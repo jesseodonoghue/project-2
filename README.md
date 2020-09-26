@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/github/jesseodonoghue/project-2.svg?branch=master)](https://travis-ci.com/github/jesseodonoghue/project-2)
+[![Build Status](https://travis-ci.com/jesseodonoghue/project-2.svg?branch=master)](https://travis-ci.com/jesseodonoghue/project-2)
+
 
 # Project 2 Starter with Auth
 
