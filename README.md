@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.com/jesseodonoghue/project-2.svg?branch=master)](https://travis-ci.com/jesseodonoghue/project-2)
 
+
 # Project 2 Starter with Auth
 
 A simple starter project with Express, Handlebars, Sequelize, Passport and Local Auth.
