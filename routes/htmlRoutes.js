@@ -59,7 +59,7 @@ module.exports = (db) => {
   // Load example index page
   router.get('/order', function (req, res) {
     if (req.isAuthenticated()) {
-      db.Example.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
+      db.Order.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
         res.render('order', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
@@ -75,7 +75,7 @@ module.exports = (db) => {
   // Load example page and pass in an example by id
   router.get('/order/:id', function (req, res) {
     if (req.isAuthenticated()) {
-      db.Example.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbExample) {
+      db.Order.findOne({ where: { id: req.params.id }, raw: true }).then(function (dbExample) {
         res.render('example-detail', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
