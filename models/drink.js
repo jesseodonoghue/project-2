@@ -5,11 +5,19 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     description: {
       type: DataTypes.TEXT
     },
     basePrice: {
       type: DataTypes.DECIMAL(5, 2),
+      allowNull: false
+    },
+    img: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   });
