@@ -63,7 +63,7 @@ module.exports = (db) => {
         res.render('order', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
-          msg: 'Welcome!',
+          msg: 'Place Your Order',
           examples: dbExamples
         });
       });

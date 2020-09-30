@@ -5,6 +5,7 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h2>{{msg}}</h2>
+
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Example Text</label>
@@ -16,11 +17,12 @@
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+
         <h4>Examples belong to this user:</h4>
         <ul id="example-list" class="list-group">
           {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="order/{{this.id}}">{{this.text}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
           {{/each}}
