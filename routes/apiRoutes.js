@@ -15,7 +15,7 @@ module.exports = (passport, db) => {
 
   // App
   router.get('/drinks', AppController.getDrinks);
-  router.post('/order', AppController.createOrder);
+  router.post('/order/:id', AppController.createOrder);
   router.post('/orderItem', AppController.createOrderItem);
 
   return router;
