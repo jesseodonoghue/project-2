@@ -14,9 +14,9 @@ module.exports = (passport, db) => {
   router.post('/user/confirm', AuthController.confirmAuth);
 
   // App
-  router.get('/examples', AppController.getExamples);
-  router.post('/examples', AppController.createExample);
-  router.delete('/examples/:id', AppController.deleteExample);
+  router.get('/drinks', AppController.getDrinks);
+  router.post('/order', AppController.createOrder);
+  router.post('/orderItem', AppController.createOrderItem);
 
   return router;
 };

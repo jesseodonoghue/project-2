@@ -8,7 +8,7 @@ module.exports = function (db) {
     },
     // Create a new order
     createOrder: function (req, res) {
-      db.Order.create(req.body).then(function (dbOrder) {
+      db.Order.create({ UserId: req.params.id }).then(function (dbOrder) {
         res.json(dbOrder);
       });
     },
