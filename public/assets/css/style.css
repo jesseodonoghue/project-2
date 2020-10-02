@@ -38,7 +38,7 @@ body {
 .container {
   padding-bottom: 2%;
   margin-top: 10%;
-  background: rgba(86, 101, 115,.6);
+  background:  rgba(164, 151, 131, 0.8);
   height:100%;
   border-radius: .25rem;
   margin-bottom: 2%;
@@ -79,3 +79,8 @@ hr {
   height: 100%;
   overflow: hidden;
 } 
+
+.bhours {
+  text-align: center
+  
+}
