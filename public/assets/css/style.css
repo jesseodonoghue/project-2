@@ -72,3 +72,10 @@ hr {
 .card-body {
   color: #444;
 }
+
+.dashboard-background {
+  background: url("project-2/public/assets/images/._coffeeshop.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+} 
