@@ -74,7 +74,7 @@ hr {
 }
 
 .dashboard-background {
-  background: url("project-2/public/assets/images/coffeeshop.jpg") no-repeat center center fixed;
+  background: url("../images/coffeeshop.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
