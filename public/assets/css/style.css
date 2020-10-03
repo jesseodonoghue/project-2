@@ -1,3 +1,8 @@
+nav {
+  background-color: #a4978e;
+  color: white;
+}
+
 body {
   color: white;
   background-size: cover;
@@ -42,12 +47,11 @@ h1, h2, h3 {
 
 .container {
   padding-bottom: 2%;
-  margin-top: 10%;
+  padding-left: 2%;
+  margin-top: 3.7%;
+  margin-right: 40%;
   background:  rgba(164, 151, 131, 0.8);
-  height:100%;
-  border-radius: .25rem;
-  margin-bottom: 2%;
-  width: 600px;
+  position: relative;
 }
 
 [data-useremail="true"] {
@@ -66,10 +70,6 @@ h1, h2, h3 {
   text-transform: capitalize;
 }
 
-hr {
-  background-color: #fff !important;
-}
-
 .list-group-item {
   line-height: 2.5;
 }
@@ -78,14 +78,67 @@ hr {
   color: #444;
 }
 
-.dashboard-background {
+.background {
   background: url("../images/coffeeshop.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  overflow: hidden;
+} 
+
+.background-profile {
+  background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
 } 
 
 .bhours {
-  text-align: center
+  text-align: center;
   
 }
+
+.card-group {
+  margin-top: 5%;
+  float: left;
+}
+
+.card {
+    width: 250px;
+    height: 300px;
+}
+
+.padding {
+  padding-bottom: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.card-body {
+  color: #444;
+  width: 250px;
+  height: 50px;
+}
+
+.img-size {
+  width: 250px; 
+  height: 250px;
+}
+
+.html{
+  position: relative;
+  min-height: 100%;  
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:#212529;
+  height: 1px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
