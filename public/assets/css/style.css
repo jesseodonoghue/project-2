@@ -78,18 +78,17 @@ h1, h2, h3 {
   color: #444;
 }
 
-/* .dashboard-background .order-background .profile-background{
-  background: url("../images/coffeeshop.jpg") no-repeat center center fixed;
-  background-size: cover;
-  height: 100%;
-}  */
-
 .background {
   background: url("../images/coffeeshop.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
 } 
 
+.background-profile {
+  background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+} 
 
 .bhours {
   text-align: center;
