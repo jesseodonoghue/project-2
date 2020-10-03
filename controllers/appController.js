@@ -6,6 +6,19 @@ module.exports = function (db) {
         res.json(dbDrinks);
       });
     },
+    // Get Orders & Order Items by Customer ID
+    getCustOrders: function (req, res) {
+      db.Order.findAll({
+        where: { UserId: req.params.id },
+        include: {
+          model: db.OrderItem,
+          include: db.Drink
+        }
+      }).then(function (dbOrders) {
+        console.log(dbOrders);
+        res.json(dbOrders);
+      });
+    },
     // Get Order by Customer ID
     getOrder: function (req, res) {
       db.Order.findAll({ where: { UserId: req.params.id } }).then(function (dbOrder) {
