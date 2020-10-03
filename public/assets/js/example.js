@@ -6,26 +6,32 @@ const $exampleList = $('#example-list');
 
 // The API object contains methods for each kind of request we'll make
 const API = {
-  saveExample: function (example) {
+  getDrinks: function () {
+    return $.ajax({
+      url: 'api/drinks',
+      type: 'GET'
+    });
+  },
+  getCustOrders: function (id) {
+    return $.ajax({
+      url: 'api/custOrders/' + id,
+      type: 'GET'
+    });
+  },
+  createOrder: function (id) {
+    return $.ajax({
+      type: 'POST',
+      url: 'api/order/' + id
+    });
+  },
+  createOrderItem: function (orderItem) {
     return $.ajax({
       headers: {
         'Content-Type': 'application/json'
       },
       type: 'POST',
-      url: 'api/examples',
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function () {
-    return $.ajax({
-      url: 'api/examples',
-      type: 'GET'
-    });
-  },
-  deleteExample: function (id) {
-    return $.ajax({
-      url: 'api/examples/' + id,
-      type: 'DELETE'
+      url: 'api/createOrderItem',
+      data: JSON.stringify(orderItem)
     });
   }
 };
