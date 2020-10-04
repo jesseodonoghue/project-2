@@ -14,6 +14,11 @@ h1, h2, h3 {
   font-family: 'Architects Daughter', cursive;
 }
 
+h1 {
+  text-align: center;
+  color: white;
+}
+
 .jumbotron {
   background: rgba(0,0,0,0);
 }
@@ -90,12 +95,19 @@ h1, h2, h3 {
   margin-top: 6em;
 } 
 
-.background-profile {
+.background-profile{
   background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   margin-top: 6em;
 } 
+
+#background-register {
+  background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  margin-top: 6em;
+}
 
 .card-group {
   margin-top: 5%;
@@ -125,11 +137,6 @@ h1, h2, h3 {
   height: 250px;
 }
 
-.html{
-  position: relative;
-  min-height: 100%;  
-}
-
 hr {
   border: 0;
   clear:both;
@@ -139,8 +146,57 @@ hr {
   height: 1px;
 }
 
-h1 {
-    text-align: center;
-    color: white;
+/* OVERLAY DESCRIPTIONS */
+.drink-card {
+  position: relative;
 }
 
+.drink-card img {
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  margin-top: 40%;
+}
+
+.drink-card:hover img {
+  opacity: 0.5;
+}
+
+.drink-card:hover .overlay {
+  opacity: 1;
+}
+
+/* DRINK CUSTOMIZATIONS MODAL */
+.modal-content {
+  border-color: transparent;
+  box-shadow: 0 6px 20px 0 #132226;
+}
+
+.modal-header {
+  background-color: #525b56;
+  color: white;
+  border-color: transparent;
+}
+
+.modal-body {
+  background-color: #a49783;
+}
+
+#drink-submit {
+  border-color: transparent;
+}
+
+#drink-submit:hover {
+  background-color: #525b56;
+  border-color:#525b56;
+}
