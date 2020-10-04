@@ -146,7 +146,7 @@ hr {
   height: 1px;
 }
 
-/* OVERLAY HOVER DESCRIPTIONS */
+/* OVERLAY DESCRIPTIONS */
 .drink-card {
   position: relative;
 }
@@ -174,4 +174,24 @@ hr {
 
 .drink-card:hover .overlay {
   opacity: 1;
+}
+
+/* DRINK CUSTOMIZATIONS MODAL */
+.modal-header {
+  background-color: #525b56;
+  color: white;
+  border-color: transparent;
+}
+
+.modal-body {
+  background-color: #a49783;
+}
+
+#drink-submit {
+  border-color: transparent;
+}
+
+#drink-submit:hover {
+  background-color: #525b56;
+  border-color:#525b56;
 }
