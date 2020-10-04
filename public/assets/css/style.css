@@ -4,8 +4,8 @@ nav {
 }
 
 body {
-  color: white;
   background-size: cover;
+  color: white;
   height:100%;
   font-family: 'Montserrat', sans-serif;
 }
@@ -74,26 +74,28 @@ h1, h2, h3 {
   line-height: 2.5;
 }
 
+.card {
+  background-color: #a49783;
+  border-color: transparent;
+  align-items: center;
+}
+
 .card-body {
-  color: #444;
+  color: #132226;
 }
 
 .background {
   background: url("../images/coffeeshop.jpg") no-repeat center center fixed;
   background-size: cover;
-  height: 100%;
+  margin-top: 6em;
 } 
 
 .background-profile {
   background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
+  margin-top: 6em;
 } 
-
-.bhours {
-  text-align: center;
-  
-}
 
 .card-group {
   margin-top: 5%;
