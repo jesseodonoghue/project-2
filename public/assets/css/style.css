@@ -177,6 +177,11 @@ hr {
 }
 
 /* DRINK CUSTOMIZATIONS MODAL */
+.modal-content {
+  border-color: transparent;
+  box-shadow: 0 6px 20px 0 #132226;
+}
+
 .modal-header {
   background-color: #525b56;
   color: white;
