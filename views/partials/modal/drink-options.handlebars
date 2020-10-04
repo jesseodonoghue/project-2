@@ -1,0 +1,75 @@
+<div class="modal" id="drink-options" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Drink Options</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form id="drink-options-form">
+            <div class="form-group">
+            <h5>Size</h5>
+            <select id="inputSize" class="form-control">
+                <option selected>Small</option>
+                <option>Medium (+ $0.50)</option>
+                <option>Large (+ $1.00)</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <h5>Would you like any additional espresso shots? ($0.25 each)</h5>
+            <select id="inputShots" class="form-control">
+                <option selected>0</option>
+                <option>+1</option>
+                <option>+2</option>
+                <option>+3</option>
+                <option>+4</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <h5>Temperature</h5>
+            <select id="inputTemperature" class="form-control">
+                <option selected>Hot</option>
+                <option>Iced</option>
+                <option>Kid Temp</option>
+                <option>Extra Hot</option>
+            </select>
+            </div>
+            <div class="form-group" id="form-group-flavors">
+            <h5>Flavors ($0.50 each)</h5>
+            <div class="form-check">
+                <input class="form-check-input" id="inputVanilla" type="checkbox" value="vanilla">
+                <label class="form-check-label" for="inputVanilla">Vanilla</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="inputChocolate" type="checkbox" value="chocolate">
+                <label class="form-check-label" for="inputChocolate">Chocolate</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" id="inputCaramel" type="checkbox" value="caramel">
+                <label class="form-check-label" for="inputCaramel">Caramel</label>
+            </div>
+            </div>
+            <div class="form-group">
+            <h5>Milk Choices</h5>
+            <select id="inputMilk" class="form-control">
+                <option selected>Whole</option>
+                <option>Skim</option>
+                <option>Half and Half (+ $0.50)</option>
+                <option>Oat (+ $0.50)</option>
+                <option>Almond (+ $0.50)</option>
+                <option>Soy (+ $0.50)</option>
+            </select>
+            </div>
+            <div class="form-group">
+            <h5>Additional Notes (allergies, special requests, etc.)</h5>
+            <textarea class="form-control" id="inputNotes" rows="3" maxlength="100" placeholder="notes . . ."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" id="drink-submit">Add Drink to Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
