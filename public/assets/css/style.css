@@ -90,12 +90,19 @@ h1, h2, h3 {
   margin-top: 6em;
 } 
 
-.background-profile {
+.background-profile{
   background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   margin-top: 6em;
 } 
+
+#background-register {
+  background: url("../images/coffeeshop2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  margin-top: 6em;
+}
 
 .card-group {
   margin-top: 5%;
