@@ -14,6 +14,11 @@ h1, h2, h3 {
   font-family: 'Architects Daughter', cursive;
 }
 
+h1 {
+  text-align: center;
+  color: white;
+}
+
 .jumbotron {
   background: rgba(0,0,0,0);
 }
@@ -132,11 +137,6 @@ h1, h2, h3 {
   height: 250px;
 }
 
-.html{
-  position: relative;
-  min-height: 100%;  
-}
-
 hr {
   border: 0;
   clear:both;
@@ -146,8 +146,32 @@ hr {
   height: 1px;
 }
 
-h1 {
-    text-align: center;
-    color: white;
+/* OVERLAY HOVER DESCRIPTIONS */
+.drink-card {
+  position: relative;
 }
 
+.drink-card img {
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  margin-top: 40%;
+}
+
+.drink-card:hover img {
+  opacity: 0.5;
+}
+
+.drink-card:hover .overlay {
+  opacity: 1;
+}
