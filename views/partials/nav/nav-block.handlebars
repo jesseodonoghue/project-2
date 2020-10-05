@@ -13,6 +13,9 @@
 
     {{#if isloggedin}}
       <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" id="shopping-cart-button" aria-hidden="true" style="color:aquamarine;"></i></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/order">Order</a>
       </li>
       <li class="nav-item">
@@ -33,3 +36,4 @@
 </nav>
 
 {{> modal/login-block}}
+{{> modal/shopping-cart}}
