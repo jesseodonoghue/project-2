@@ -1,17 +1,17 @@
 {{> nav/nav-block user=true register=false}}
 
 <body class="background-profile">
-  
+
   <div class="container mr-auto p-2">
     <header align="center" class="header-wrap">
-      <h3>View or update your user</h3>
       <div class="userId">
-        {{!-- <h3>Welcome, {{userInfo.firstName}}</h3> --}}
-        {{!-- <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5> --}}
+        <h3>Welcome, {{userInfo.firstName}}</h3>
+        <h5 id="user-number" data-useremail="{{userInfo.email}}">Account email: {{userInfo.email}}</h5>
+        <h3 id="update-err-msg"></h3>
       </div>
-      <h3 id="update-err-msg"></h3>
     </header>
-
+    <hr class="my-4">
+    <h3>View or update your user:</h3>
     <form id="user-form">
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -38,7 +38,7 @@
       <div>
         <button type="submit" id="update-user" data-id="{{userInfo.id}}" class="btn btn-primary">Update</button>
         {{#unless userInfo.isAdmin}}
-          <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
+        <button type="submit" id="delete-user" class="btn btn-primary">Delete</button>
         {{/unless}}
         <button type="submit" id="view-user" data-id="{{userInfo.id}}" class="btn btn-primary">Refresh</button>
       </div>
@@ -69,7 +69,8 @@
           </div>
 
           <div class="modal-footer">
-            <button id="confirm-delete" type="button" data-id="{{userInfo.id}}" class="btn btn-primary">Confirm Delete</button>
+            <button id="confirm-delete" type="button" data-id="{{userInfo.id}}" class="btn btn-primary">Confirm
+              Delete</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah I'll stay</button>
           </div>
         </div>
