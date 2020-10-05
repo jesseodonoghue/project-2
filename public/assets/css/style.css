@@ -52,8 +52,6 @@ h1 {
 
 .container {
   padding-bottom: 2%;
-  padding-left: 2%;
-  padding-top: 1%;
   margin-top: 3.7%;
   margin-right: 40%;
   background:  rgba(164, 151, 131, 0.8);
@@ -121,7 +119,7 @@ h1 {
 }
 
 .menu{
-  margin: 1%;
+  margin: 1% auto;
 }
 
 .card-body {
@@ -175,10 +173,10 @@ hr {
 }
 
 /* DRINK CUSTOMIZATIONS MODAL */
-/* .modal-content {
+.modal-content {
   border-color: transparent;
   box-shadow: 0 6px 20px 0 #132226;
-} */
+}
 
 .modal-header {
   background-color: #525b56;
@@ -199,6 +197,7 @@ hr {
   border-color:#525b56;
 }
 
+/* ORDER CART */
 .modal.right .modal-dialog {
   position: fixed;
   margin: auto;
