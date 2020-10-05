@@ -45,6 +45,11 @@ h1 {
   color: red !important;
 }
 
+#login:hover {
+  background-color: #525b56;
+  border-color:#525b56;
+}
+
 #go-home {
  width: auto;
  height: 65px;
@@ -172,6 +177,20 @@ hr {
   opacity: 1;
 }
 
+/* PROFILE BUTTONS */
+#update-user:hover {
+  background-color: #525b56;
+  border-color:#525b56;
+}
+#delete-user:hover {
+  background-color: #525b56;
+  border-color:#525b56;
+}
+#view-user:hover {
+  background-color: #525b56;
+  border-color:#525b56;
+}
+
 /* DRINK CUSTOMIZATIONS MODAL */
 .modal-content {
   border-color: transparent;
@@ -182,6 +201,11 @@ hr {
   background-color: #525b56;
   color: white;
   border-color: transparent;
+}
+
+.modal-footer {
+  background-color: #a49783;
+  border-color:#a49783;
 }
 
 .modal-body {
