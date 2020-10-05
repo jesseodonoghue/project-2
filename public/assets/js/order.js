@@ -11,12 +11,11 @@ let drinkName;
 // When a drink-card is clicked, reset drink-options-form and display
 // drink-options modal. Set global drink values
 $('.drink-card').click(function (event) {
-  // event.preventDefault();
   $('#drink-options').modal('show');
-  // $('#drink-options-form').trigger('reset');
-  drinkID = $(this).data('drinkID');
-  drinkName = $(this).data('drinkName');
-  drinkPrice = $(this).data('drinkPrice');
+  $('#drink-options-form').trigger('reset');
+  drinkID = $(this).data('id');
+  drinkName = $(this).data('name');
+  drinkPrice = parseFloat($(this).data('price'));
 });
 
 // When form is submitted, pull values from inputs, create orderItem object, and push into global order array
@@ -33,7 +32,8 @@ $('#drink-options-form').submit(function (event) {
   const drinkNotes = {
     size: $('#inputSize').val(),
     temperature: $('#inputTemperature').val(),
-    milk: $('#inputMilk').val().split('(')[0].trim()
+    milk: $('#inputMilk').val().split('(')[0].trim(),
+    notes: $('#inputNotes').val()
   };
 
   // If size is not small, update drinkNotes.size and add upcharge to orderItem.price
@@ -111,26 +111,31 @@ $('#drink-options-form').submit(function (event) {
   // subtotal += orderItem.price;
 
   // save drinkNotes to orderItem.notes as a stringified JSON object
-  orderItem.notes = JSON.stringify(drinkNotes);
+  orderItem.notes = drinkNotes;
 
   // push orderItem into order array
   order.push(orderItem);
 
   // save order array to local storage
   localStorage.setItem('order', JSON.stringify(order));
+
+  $('#drink-options').modal('toggle');
 });
 
 // When shopping cart icon is clicked, display cart modal
-// $('#shopping-cart-button').click(function (event) {
-//   event.preventDefault();
+$('#shopping-cart-button').click(function (event) {
+  $('#shopping-cart').modal('show');
+  $('#cart-body').empty();
 
-//   for (let i = 0; i < order.length; i++) {
-//     let itemEl = $('<div>').data(i, order[i]);
-//     let itemHeaderEl = $('<h5>').text(order[i].name);
-//     let itemNotesEl = $('<p>').text(order.notes);
-//   }
-//   $('#shopping-cart-div').css('display', 'block');
-// });
+  for (let i = 0; i < order.length; i++) {
+    const itemEl = $('<div>').data('id', i).addClass('cart-item');
+    const itemHeaderEl = $('<h5>').text(order[i].name);
+    const itemNotesEl = $('<p>').text(orderNotesToString(order[i].notes));
+
+    itemEl.append(itemHeaderEl).append(itemNotesEl);
+    $('#cart-body').append(itemEl);
+  }
+});
 
 // When submit-order-button is clicked, if order is empty do nothing, else save order to db
 $('submit-order-button').click(function (event) {
@@ -141,19 +146,33 @@ $('submit-order-button').click(function (event) {
   }
 });
 
-// function orderNotesToString (orderNotesObj) {
-//   let flavors;
-//   switch (orderNotesObj.flavor.length) {
-//     case 0:
-//       break;
-//     case 1:
-//       flavors = `, ${orderNotesObj.flavor[0]}`;
-//       break;
-//     default:
-//       flavors = `, ${orderNotesObj.flavor[0]}`;
-//       for (let i = 1; i < orderNotesObj.flavor.length; i++) {
-//         flavors += `, ${orderNotesObj.flavor[i]}`;
-//       }
-//   }
-//   return `Size: ${orderNotesObj.size}, Temperature: ${orderNotesObj.temperature}, Milk: ${orderNotesObj.milk}${orderNotesObj.flavor ? flavors : ''}`;
-// }
+function orderNotesToString (orderNotesObj) {
+  let noteString = '';
+  let flavors = '';
+
+  noteString = `Size: ${orderNotesObj.size}, Temperature: ${orderNotesObj.temperature}, Milk: ${orderNotesObj.milk}`;
+
+  if (orderNotesObj.flavor) {
+    switch (orderNotesObj.flavor.length) {
+      case 1:
+        flavors = `, Flavors: ${orderNotesObj.flavor[0]}`;
+        break;
+      default:
+        flavors = `, Flavors: ${orderNotesObj.flavor[0]}`;
+        for (let i = 1; i < orderNotesObj.flavor.length; i++) {
+          flavors += `, ${orderNotesObj.flavor[i]}`;
+        }
+    }
+    noteString += flavors;
+  }
+
+  if (orderNotesObj.extraShots) {
+    noteString += `, Shots: ${orderNotesObj.extraShots}`;
+  }
+
+  if (orderNotesObj.notes) {
+    noteString += `, Notes: ${orderNotesObj.notes}`;
+  }
+
+  return noteString;
+}
