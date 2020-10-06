@@ -65,7 +65,7 @@ module.exports = (db) => {
       };
       res.render('confirm', user);
     } else {
-      res.render('confirm');
+      res.render('/');
     }
   });
 
