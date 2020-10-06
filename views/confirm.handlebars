@@ -1,0 +1,13 @@
+{{> nav/nav-block}}
+
+<body class="background">
+    <div id="main-container" class="container mr-auto p-2">
+        <div class="jumbotron text-center header-wrap">
+            <h1 class="lead">Thank you {{userInfo.firstName}} for your order!</h1>
+            <h3>Order #: 309109</h3>
+            <br>
+            <div class="confirma-order">{{order.list}}</div>
+            <p>Your order will be ready for pick-up in 15 minutes.</p>
+        </div>
+    </div>
+</body>

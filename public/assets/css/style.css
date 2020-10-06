@@ -191,6 +191,15 @@ hr {
   border-color:#525b56;
 }
 
+#add-user {
+  background-color: whitesmoke;
+}
+
+#add-user:hover {
+  background-color: #525b56;
+  border-color: white;
+}
+
 /* DRINK CUSTOMIZATIONS MODAL */
 .modal-content {
   border-color: transparent;
@@ -212,13 +221,8 @@ hr {
   background-color: #a49783;
 }
 
-#drink-submit {
-  border-color: transparent;
-}
-
 #drink-submit:hover {
   background-color: #cadde1;
-  border-color:#525b56;
 }
 
 /* ORDER CART */
@@ -284,4 +288,8 @@ hr {
 
 .modal.right.fade.in .modal-dialog {
   right: 0;
+}
+
+.confirm-page {
+  margin-bottom: 5em;
 }
