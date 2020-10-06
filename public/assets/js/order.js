@@ -1,3 +1,37 @@
+// The API object contains methods for each kind of request we'll make
+const API = {
+  getDrinks: function () {
+    return $.ajax({
+      url: 'api/drinks',
+      type: 'GET'
+    });
+  },
+  getCustOrders: function (id) {
+    return $.ajax({
+      url: 'api/custOrders/' + id,
+      type: 'GET'
+    });
+  },
+  createOrder: function (id) {
+    return $.ajax({
+      type: 'POST',
+      url: 'api/order/' + id
+    });
+  },
+  createOrderItem: function (orderItem) {
+    return $.ajax({
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      type: 'POST',
+      url: 'api/orderItem',
+      data: JSON.stringify(orderItem)
+    });
+  }
+};
+
+const taxRate = 0.06;
+
 let order = [];
 // let subtotal = 0;
 // if order is in local storage, use that order
@@ -24,7 +58,7 @@ $('#drink-options-form').submit(function (event) {
   // initialize orderItem price and drinkId from global drink variables
   const orderItem = {
     price: drinkPrice,
-    drinkId: drinkID,
+    DrinkId: drinkID,
     name: drinkName
   };
 
@@ -126,24 +160,47 @@ $('#drink-options-form').submit(function (event) {
 $('#shopping-cart-button').click(function (event) {
   $('#shopping-cart').modal('show');
   $('#cart-body').empty();
+  let subtotal = 0;
+  let tax;
 
   for (let i = 0; i < order.length; i++) {
+    subtotal += order[i].price;
     const itemEl = $('<div>').data('id', i).addClass('cart-item');
-    const itemHeaderEl = $('<h5>').text(order[i].name);
+    const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
+    const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
     const itemNotesEl = $('<p>').text(orderNotesToString(order[i].notes));
 
-    itemEl.append(itemHeaderEl).append(itemNotesEl);
+    itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
     $('#cart-body').append(itemEl);
   }
+
+  tax = subtotal * taxRate;
+  tax = Math.round(tax * 100) / 100;
+  const total = subtotal + tax;
+
+  $('#subtotal-value').text('$' + subtotal.toFixed(2));
+  $('#tax-value').text('$' + tax);
+  $('#total-value').text('$' + total.toFixed(2));
 });
 
 // When submit-order-button is clicked, if order is empty do nothing, else save order to db
-$('submit-order-button').click(function (event) {
+$('#order-submit-button').click(function (event) {
   event.preventDefault();
 
   if (order.length > 0) {
-    // API.createOrder???
-  }
+    API.createOrder($(this).data('id')).then(function (data) {
+      for (let i = 0; i < order.length; i++) {
+        order[i].OrderId = data.id;
+        order[i].notes = JSON.stringify(order[i].notes);
+      }
+      console.log('order array \n', order);
+      API.createOrderItem(order).then(function (data) {
+        console.log('order submitted!\n', data);
+        order = [];
+        localStorage.removeItem('order');
+      });
+    });
+  };
 });
 
 function orderNotesToString (orderNotesObj) {

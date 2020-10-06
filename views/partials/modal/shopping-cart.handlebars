@@ -26,8 +26,28 @@
         </button>
       </div>
       
-      <div class="modal-body" id="cart-body">
-        😥 Your cart is currently empty.
+      <div class="modal-body">
+        <div id="cart-body">
+          😥 Your cart is currently empty.
+        </div>
+        <div class="cart-total">
+          <hr>
+          <p>
+            <span class="cart-item-name">Subtotal:</span>
+            <span class="cart-item-price" id="subtotal-value"></span>
+          </p>
+          <p>
+            <span class="cart-item-name">Tax:</span>
+            <span class="cart-item-price" id="tax-value"></span>
+          </p>
+          <p>
+            <span class="cart-item-name">Total:</span>
+            <span class="cart-item-price" id="total-value"></span>
+          </p>
+          <p class="order-button-wrapper">
+            <button class="btn" id="order-submit-button" data-id= {{userInfo.id}}>Submit Order</button>
+          </p>
+        </div>
       </div>
 
 			</div><!-- modal-content -->
