@@ -154,11 +154,11 @@ $('#drink-options-form').submit(function (event) {
   localStorage.setItem('order', JSON.stringify(order));
 
   $('#drink-options').modal('toggle');
+  renderCart();
+  $('#shopping-cart').modal('show');
 });
 
-// When shopping cart icon is clicked, display cart modal
-$('#shopping-cart-button').click(function (event) {
-  $('#shopping-cart').modal('show');
+function renderCart () {
   $('#cart-body').empty();
   let subtotal = 0;
   let tax;
@@ -181,6 +181,12 @@ $('#shopping-cart-button').click(function (event) {
   $('#subtotal-value').text('$' + subtotal.toFixed(2));
   $('#tax-value').text('$' + tax);
   $('#total-value').text('$' + total.toFixed(2));
+}
+
+// When shopping cart icon is clicked, display cart modal
+$('#shopping-cart-button').click(function (event) {
+  renderCart();
+  $('#shopping-cart').modal('show');
 });
 
 // When submit-order-button is clicked, if order is empty do nothing, else save order to db
