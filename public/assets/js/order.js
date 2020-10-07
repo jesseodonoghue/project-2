@@ -67,13 +67,18 @@ function renderCart () {
 function renderCartBadge (count) {
   const li = $('#cart-list-item');
   const a = $('<a>').addClass('nav-link').attr('href', '#');
-  const span = $('<span>').addClass('fa-stack fa-sm has-badge').attr('data-count', count);
+  const span = $('<span>').addClass('fa-stack fa-sm has-badge').attr('id', 'shopping-cart-span').attr('data-count', count);
   const i = $('<i>').addClass('fa fa-stack-lg fa-inverse');
   const cartImg = $('<i>').attr('id', 'shopping-cart-button').addClass('fa fa-shopping-cart fa-stack-2x aquamarine-cart');
 
   span.append(i).append(cartImg);
   a.append(span);
   li.html(a);
+
+  $('#cart-list-item').click(function (event) {
+    renderCart();
+    $('#shopping-cart').modal('show');
+  });
 }
 
 renderCartBadge('0');
@@ -206,12 +211,6 @@ $('#drink-options-form').submit(function (event) {
   $('#drink-options').modal('toggle');
   renderCart();
   renderCartBadge(order.length.toString());
-  $('#shopping-cart').modal('show');
-});
-
-// When shopping cart icon is clicked, display cart modal
-$('#shopping-cart-button').click(function (event) {
-  renderCart();
   $('#shopping-cart').modal('show');
 });
 
