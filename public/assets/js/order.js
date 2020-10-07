@@ -30,6 +30,54 @@ const API = {
   }
 };
 
+function renderCart () {
+  $('#cart-body').empty();
+  let subtotal = 0;
+  let tax;
+
+  for (let i = 0; i < order.length; i++) {
+    subtotal += order[i].price;
+    const itemEl = $('<div>').data('id', i).addClass('cart-item');
+    const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
+    const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
+    const itemNotesEl = $('<p>').text(order[i].notesString);
+    const removeItemEl = $('<a>').data('id', i).attr('href', '#').addClass('remove-item').text('[Remove Item]');
+
+    itemNotesEl.append(removeItemEl);
+    itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
+    $('#cart-body').append(itemEl);
+  }
+
+  tax = subtotal * taxRate;
+  tax = Math.round(tax * 100) / 100;
+  const total = subtotal + tax;
+
+  $('#subtotal-value').text('$' + subtotal.toFixed(2));
+  $('#tax-value').text('$' + tax);
+  $('#total-value').text('$' + total.toFixed(2));
+
+  $('.remove-item').click(function (event) {
+    order.splice($(this).data('id'), 1);
+    localStorage.setItem('order', JSON.stringify(order));
+    renderCart();
+    renderCartBadge(order.length.toString());
+  });
+}
+
+function renderCartBadge (count) {
+  const li = $('#cart-list-item');
+  const a = $('<a>').addClass('nav-link').attr('href', '#');
+  const span = $('<span>').addClass('fa-stack fa-sm has-badge').attr('data-count', count);
+  const i = $('<i>').addClass('fa fa-stack-lg fa-inverse');
+  const cartImg = $('<i>').attr('id', 'shopping-cart-button').addClass('fa fa-shopping-cart fa-stack-2x aquamarine-cart');
+
+  span.append(i).append(cartImg);
+  a.append(span);
+  li.html(a);
+}
+
+renderCartBadge('0');
+
 const taxRate = 0.06;
 
 let order = [];
@@ -37,6 +85,7 @@ let order = [];
 // if order is in local storage, use that order
 if (localStorage.getItem('order')) {
   order = JSON.parse(localStorage.getItem('order'));
+  renderCartBadge(order.length.toString());
 }
 let drinkID;
 let drinkPrice;
@@ -156,41 +205,9 @@ $('#drink-options-form').submit(function (event) {
 
   $('#drink-options').modal('toggle');
   renderCart();
+  renderCartBadge(order.length.toString());
   $('#shopping-cart').modal('show');
 });
-
-function renderCart () {
-  $('#cart-body').empty();
-  let subtotal = 0;
-  let tax;
-
-  for (let i = 0; i < order.length; i++) {
-    subtotal += order[i].price;
-    const itemEl = $('<div>').data('id', i).addClass('cart-item');
-    const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
-    const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
-    const itemNotesEl = $('<p>').text(order[i].notesString);
-    const removeItemEl = $('<a>').data('id', i).attr('href', '#').addClass('remove-item').text('[Remove Item]');
-
-    itemNotesEl.append(removeItemEl);
-    itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
-    $('#cart-body').append(itemEl);
-  }
-
-  tax = subtotal * taxRate;
-  tax = Math.round(tax * 100) / 100;
-  const total = subtotal + tax;
-
-  $('#subtotal-value').text('$' + subtotal.toFixed(2));
-  $('#tax-value').text('$' + tax);
-  $('#total-value').text('$' + total.toFixed(2));
-
-  $('.remove-item').click(function (event) {
-    order.splice($(this).data('id'), 1);
-    localStorage.setItem('order', JSON.stringify(order));
-    renderCart();
-  });
-}
 
 // When shopping cart icon is clicked, display cart modal
 $('#shopping-cart-button').click(function (event) {
@@ -213,6 +230,7 @@ $('#order-submit-button').click(function (event) {
       API.createOrderItem(order).then(function (data) {
         console.log('order submitted!\n', data);
         order = [];
+        renderCartBadge(order.length.toString());
         localStorage.removeItem('order');
       }).then(function (data) {
         window.location.replace('/confirm/' + orderID);
