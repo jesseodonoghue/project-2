@@ -153,7 +153,8 @@ hr {
 }
 
 .drink-card img {
-  width: 100%;
+  width: 80%;
+  height: auto;
 }
 
 .overlay {
@@ -175,6 +176,18 @@ hr {
 
 .drink-card:hover .overlay {
   opacity: 1;
+}
+
+.drink-name {
+  display: block;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.drink-price {
+  display: block;
+  font-size: 1.1rem;
 }
 
 /* PROFILE BUTTONS */
