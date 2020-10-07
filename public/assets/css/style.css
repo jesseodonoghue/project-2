@@ -152,6 +152,11 @@ hr {
   position: relative;
 }
 
+.drink-card:hover {
+  transition: .5s ease;
+  background-color: #132226;
+}
+
 .drink-card img {
   width: 80%;
   height: auto;
@@ -167,7 +172,9 @@ hr {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  margin-top: 40%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .drink-card:hover img {

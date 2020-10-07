@@ -4,20 +4,21 @@
     CoffeeHut
   </a>
 
+{{!-- Collapse Button --}}
+  <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+    aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i
+        class="navbar-toggler-icon"></i></span></button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent1">
   <!-- Links -->
   <ul class="nav navbar-nav ml-auto">
 
-    {{!-- <li class="nav-item">
-      <a class="nav-link" href="/some-feature">Menu item here</a>
-    </li> --}}
-
     {{#if isloggedin}}
     <li class="nav-item" id="cart-list-item">
-      {{!-- <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" id="shopping-cart-button" aria-hidden="true" style="color:aquamarine;"></i></a> --}}
+      {{!-- <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" id="shopping-cart-button" aria-hidden="true" style="color:aquamarine;"></i></a> --}} --}}
       {{!-- <a class="nav-link" href="#"><span class="fa-stack fa-sm has-badge" id="cart-count" data-count="0">
-          <i class="fa fa-stack-lg fa-inverse"></i>
-          <i id="shopping-cart-button" class="fa fa-shopping-cart fa-stack-2x aquamarine-cart"></i>
-        </span></a> --}}
+        <i class="fa fa-stack-lg fa-inverse"></i>
+        <i id="shopping-cart-button" class="fa fa-shopping-cart fa-stack-2x aquamarine-cart"></i></span></a> --}}
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/order">Order</a>
@@ -37,6 +38,8 @@
     </li>
     {{/if}}
   </ul>
+
+</div>
 </nav>
 
 {{> modal/login-block}}
