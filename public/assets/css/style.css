@@ -267,6 +267,10 @@ hr {
   border-color:#525b56;
 }
 
+.remove-item {
+  margin-left: 5px;
+  color: red;
+}
 
 .modal.right .modal-dialog {
   position: fixed;

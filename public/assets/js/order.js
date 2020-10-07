@@ -169,7 +169,9 @@ function renderCart () {
     const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
     const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
     const itemNotesEl = $('<p>').text(orderNotesToString(order[i].notes));
+    const removeItemEl = $('<a>').data('id', i).attr('href', '#').addClass('remove-item').text('[Remove Item]');
 
+    itemNotesEl.append(removeItemEl);
     itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
     $('#cart-body').append(itemEl);
   }
@@ -181,6 +183,12 @@ function renderCart () {
   $('#subtotal-value').text('$' + subtotal.toFixed(2));
   $('#tax-value').text('$' + tax);
   $('#total-value').text('$' + total.toFixed(2));
+
+  $('.remove-item').click(function (event) {
+    order.splice($(this).data('id'), 1);
+    localStorage.setItem('order', JSON.stringify(order));
+    renderCart();
+  });
 }
 
 // When shopping cart icon is clicked, display cart modal
