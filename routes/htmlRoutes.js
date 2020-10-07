@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 module.exports = (db) => {
+  // const appController = require('../controllers/appController')(db);
+
   // Load register page
   router.get('/register', (req, res) => {
     if (req.isAuthenticated()) {
@@ -57,15 +59,22 @@ module.exports = (db) => {
   });
 
   // Confirmation page
-  router.get('/confirm', (req, res) => {
+  router.get('/confirm/:id', (req, res) => {
     if (req.isAuthenticated()) {
-      const user = {
-        user: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render('confirm', user);
+      db.OrderItem.findAll({
+        where: { OrderId: req.params.id },
+        include: db.Drink
+      }).then(function (dbOrderItems) {
+        console.log('orderItems array!------', dbOrderItems);
+        res.render('confirm', {
+          userInfo: req.session.passport.user,
+          isloggedin: req.isAuthenticated(),
+          order: dbOrderItems,
+          orderID: dbOrderItems[0].OrderId
+        });
+      });
     } else {
-      res.render('/');
+      res.redirect('/');
     }
   });
 

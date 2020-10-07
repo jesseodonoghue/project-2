@@ -4,9 +4,17 @@
     <div id="main-container" class="container mr-auto p-2">
         <div class="jumbotron text-center header-wrap">
             <h1 class="lead">Thank you {{userInfo.firstName}} for your order!</h1>
-            <h3>Order #: 309109</h3>
+            <h3>Order #: {{orderID}}</h3>
             <br>
-            <div class={{order.list}}></div>
+            <div class='order-items'>
+                {{#each order}}
+                    <div class="cart-item">
+                        <span class="cart-item-name">{{this.Drink.dataValues.name}}</span>
+                        <span class="cart-item-price">${{this.dataValues.price}}</span>
+                        <p class="cart-item-notes">{{this.dataValues.notesString}}</p>
+                    </div>
+                {{/each}}
+            </div>
             <p>Your order will be ready for pick-up in 15 minutes.</p>
         </div>
     </div>
