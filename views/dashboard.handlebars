@@ -1,7 +1,7 @@
 {{> nav/nav-block}}
 <body class="background">
   <div id="main-container" class="container mr-auto p-2">
-    <div class="jumbotron text-center header-wrap">
+    <div class="jumbotron text-center align-content-center header-wrap">
       <h1 class="lead">Welcome to <strong>CoffeeHut</strong></h1>
       <hr class="my-4">
       <div>
@@ -22,7 +22,19 @@
             Sunday: 10am-2pm
           </p>
         </p>
+
       </div>
+
+        <div id="err-login-msg">
+        {{#if isloggedin}}
+          You are logged in as {{user.firstName}} <br><br>
+          <a href="/logout"> <button type="btn" class="btn logout-btn">Logout</button></a>
+        {{else}}
+          <p>You need to log in to use this app.</p>
+        {{/if}}
+        <h5 id="login-err-msg"></h5>
+        </div>
+
     </div>
   </div>
 </body>
