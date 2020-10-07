@@ -1,3 +1,8 @@
+const taxRate = 0.06;
+let subtotalTracker;
+let taxTracker;
+let totalTracker;
+
 // The API object contains methods for each kind of request we'll make
 const API = {
   getDrinks: function () {
@@ -32,9 +37,9 @@ const API = {
 
 function renderCart () {
   $('#cart-body').empty();
+
   let subtotal = 0;
   let tax;
-
   for (let i = 0; i < order.length; i++) {
     subtotal += order[i].price;
     const itemEl = $('<div>').data('id', i).addClass('cart-item');
@@ -51,6 +56,10 @@ function renderCart () {
   tax = subtotal * taxRate;
   tax = Math.round(tax * 100) / 100;
   const total = subtotal + tax;
+
+  subtotalTracker = subtotal;
+  taxTracker = tax;
+  totalTracker = total;
 
   $('#subtotal-value').text('$' + subtotal.toFixed(2));
   $('#tax-value').text('$' + tax);
@@ -83,7 +92,12 @@ function renderCartBadge (count) {
 
 renderCartBadge('0');
 
-const taxRate = 0.06;
+if (localStorage.getItem('totalInfo')) {
+  const totalObj = JSON.parse(localStorage.getItem('totalInfo'));
+  $('#confirm-subtotal').text('$' + totalObj.subtotal.toFixed(2));
+  $('#confirm-tax').text('$' + totalObj.tax.toFixed(2));
+  $('#confirm-total').text('$' + totalObj.total.toFixed(2));
+}
 
 let order = [];
 // let subtotal = 0;
@@ -231,6 +245,12 @@ $('#order-submit-button').click(function (event) {
         order = [];
         renderCartBadge(order.length.toString());
         localStorage.removeItem('order');
+        const totalObj = {
+          subtotal: subtotalTracker,
+          tax: taxTracker,
+          total: totalTracker
+        };
+        localStorage.setItem('totalInfo', JSON.stringify(totalObj));
       }).then(function (data) {
         window.location.replace('/confirm/' + orderID);
       });
