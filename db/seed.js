@@ -29,10 +29,10 @@ module.exports = (db) => {
     });
   }).then(() => {
     db.Drink.create({
-      name: 'Cappucino',
+      name: 'Cappuccino',
       description: 'Our Cappuccino is a warm cup of blended espresso and frothy, bold deliciousness. Made with high-quality espresso beans, freshly ground, freshly brewed and then blended with steamed milk. This beverage has a thick layer of creamy foam for your delight.',
       basePrice: 4.00,
-      img: 'assets/images/cappucino.png'
+      img: 'assets/images/cappuccino.png'
     });
   }).then(() => {
     db.Drink.create({
