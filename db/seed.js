@@ -36,7 +36,7 @@ module.exports = (db) => {
     });
   }).then(() => {
     db.Drink.create({
-      name: 'Double Shot',
+      name: 'Espresso Double Shot',
       description: 'We roast and grind the finest, high-quality Arabica beans. Every shot of espresso is brewed fresh for every beverage a guest orders. Every sip is balanced with sweet caramel and bittersweet chocolate for a smooth and bold flavor.',
       basePrice: 2.00,
       img: 'assets/images/espresso.png'

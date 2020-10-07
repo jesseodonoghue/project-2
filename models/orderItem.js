@@ -8,6 +8,9 @@ module.exports = function (sequelize, DataTypes) {
     notes: {
       type: DataTypes.TEXT
     },
+    notesString: {
+      type: DataTypes.TEXT
+    },
     price: {
       type: DataTypes.DECIMAL(5, 2),
       allowNull: false

@@ -268,6 +268,10 @@ hr {
   border-color:#525b56;
 }
 
+.remove-item {
+  margin-left: 5px;
+  color: red;
+}
 
 .modal.right .modal-dialog {
   position: fixed;
@@ -306,4 +310,27 @@ hr {
 
 .confirm-page {
   margin-bottom: 5em;
+}
+
+.fa-stack[data-count]:after{
+  position:absolute;
+  right: -20%;
+  top: -10%;
+  content: attr(data-count);
+  font-size:50%;
+  padding:.6em;
+  border-radius:999px;
+  border-color: aquamarine;
+  line-height:.65em;
+  color:black;
+  text-align:center;
+  min-width:2em;
+  font-weight:bold;
+  background: white;
+  border-style:solid;
+}
+
+
+.aquamarine-cart {
+	color: aquamarine;
 }

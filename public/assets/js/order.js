@@ -30,6 +30,59 @@ const API = {
   }
 };
 
+function renderCart () {
+  $('#cart-body').empty();
+  let subtotal = 0;
+  let tax;
+
+  for (let i = 0; i < order.length; i++) {
+    subtotal += order[i].price;
+    const itemEl = $('<div>').data('id', i).addClass('cart-item');
+    const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
+    const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
+    const itemNotesEl = $('<p>').text(order[i].notesString);
+    const removeItemEl = $('<a>').data('id', i).attr('href', '#').addClass('remove-item').text('[Remove Item]');
+
+    itemNotesEl.append(removeItemEl);
+    itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
+    $('#cart-body').append(itemEl);
+  }
+
+  tax = subtotal * taxRate;
+  tax = Math.round(tax * 100) / 100;
+  const total = subtotal + tax;
+
+  $('#subtotal-value').text('$' + subtotal.toFixed(2));
+  $('#tax-value').text('$' + tax);
+  $('#total-value').text('$' + total.toFixed(2));
+
+  $('.remove-item').click(function (event) {
+    order.splice($(this).data('id'), 1);
+    localStorage.setItem('order', JSON.stringify(order));
+    renderCart();
+    renderCartBadge(order.length.toString());
+  });
+}
+
+function renderCartBadge (count) {
+  const li = $('#cart-list-item');
+  const a = $('<a>').addClass('nav-link').attr('href', '#');
+  const span = $('<span>').addClass('fa-stack fa-sm has-badge').attr('id', 'shopping-cart-span').attr('data-count', count);
+  const i = $('<i>').addClass('fa fa-stack-lg fa-inverse');
+  const cartImg = $('<i>').attr('id', 'shopping-cart-button').addClass('fa fa-shopping-cart fa-stack-2x aquamarine-cart');
+
+  span.append(i).append(cartImg);
+  a.append(span);
+  li.html(a);
+
+  $('#cart-list-item').click(function (event) {
+    renderCart();
+    $('#shopping-cart').modal('show');
+  });
+}
+
+renderCartBadge('0');
+
 const taxRate = 0.06;
 
 let order = [];
@@ -37,6 +90,7 @@ let order = [];
 // if order is in local storage, use that order
 if (localStorage.getItem('order')) {
   order = JSON.parse(localStorage.getItem('order'));
+  renderCartBadge(order.length.toString());
 }
 let drinkID;
 let drinkPrice;
@@ -146,6 +200,7 @@ $('#drink-options-form').submit(function (event) {
 
   // save drinkNotes to orderItem.notes as a stringified JSON object
   orderItem.notes = drinkNotes;
+  orderItem.notesString = orderNotesToString(drinkNotes);
 
   // push orderItem into order array
   order.push(orderItem);
@@ -155,46 +210,17 @@ $('#drink-options-form').submit(function (event) {
 
   $('#drink-options').modal('toggle');
   renderCart();
-  $('#shopping-cart').modal('show');
-});
-
-function renderCart () {
-  $('#cart-body').empty();
-  let subtotal = 0;
-  let tax;
-
-  for (let i = 0; i < order.length; i++) {
-    subtotal += order[i].price;
-    const itemEl = $('<div>').data('id', i).addClass('cart-item');
-    const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
-    const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
-    const itemNotesEl = $('<p>').text(orderNotesToString(order[i].notes));
-
-    itemEl.append(itemNameEl).append(itemPriceEl).append(itemNotesEl);
-    $('#cart-body').append(itemEl);
-  }
-
-  tax = subtotal * taxRate;
-  tax = Math.round(tax * 100) / 100;
-  const total = subtotal + tax;
-
-  $('#subtotal-value').text('$' + subtotal.toFixed(2));
-  $('#tax-value').text('$' + tax);
-  $('#total-value').text('$' + total.toFixed(2));
-}
-
-// When shopping cart icon is clicked, display cart modal
-$('#shopping-cart-button').click(function (event) {
-  renderCart();
+  renderCartBadge(order.length.toString());
   $('#shopping-cart').modal('show');
 });
 
 // When submit-order-button is clicked, if order is empty do nothing, else save order to db
 $('#order-submit-button').click(function (event) {
   event.preventDefault();
-
+  let orderID;
   if (order.length > 0) {
     API.createOrder($(this).data('id')).then(function (data) {
+      orderID = data.id;
       for (let i = 0; i < order.length; i++) {
         order[i].OrderId = data.id;
         order[i].notes = JSON.stringify(order[i].notes);
@@ -203,7 +229,10 @@ $('#order-submit-button').click(function (event) {
       API.createOrderItem(order).then(function (data) {
         console.log('order submitted!\n', data);
         order = [];
+        renderCartBadge(order.length.toString());
         localStorage.removeItem('order');
+      }).then(function (data) {
+        window.location.replace('/confirm/' + orderID);
       });
     });
   };
