@@ -59,12 +59,12 @@ module.exports = (db) => {
   // Load example index page
   router.get('/order', function (req, res) {
     if (req.isAuthenticated()) {
-      db.Order.findAll({ where: { UserId: req.session.passport.user.id }, raw: true }).then(function (dbExamples) {
+      db.Drink.findAll({ raw: true }).then(function (dbDrinks) {
         res.render('order', {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated(),
           msg: 'Place Your Order',
-          examples: dbExamples
+          drinks: dbDrinks
         });
       });
     } else {
