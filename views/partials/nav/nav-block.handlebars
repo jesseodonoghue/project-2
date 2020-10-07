@@ -1,9 +1,9 @@
- <nav class="navbar navbar-expand-sm navbar-dark fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
   <!-- Brand/logo -->
   <a class="navbar-brand" href="/">
     CoffeeHut
   </a>
-  
+
   <!-- Links -->
   <ul class="nav navbar-nav ml-auto">
 
@@ -12,25 +12,29 @@
     </li> --}}
 
     {{#if isloggedin}}
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" id="shopping-cart-button" aria-hidden="true" style="color:aquamarine;"></i></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/order">Order</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Logout</a>
-      </li>
+    <li class="nav-item">
+      {{!-- <a class="nav-link" href="#"><i class="fa fa-shopping-cart fa-lg" id="shopping-cart-button" aria-hidden="true" style="color:aquamarine;"></i></a> --}}
+      <a class="nav-link" href="#"><span class="fa-stack fa-sm has-badge" data-count="25">
+          <i class="fa fa-stack-lg fa-inverse"></i>
+          <i id="shopping-cart-button" style="" class="fa fa-shopping-cart fa-stack-2x aquamarine-cart"></i>
+        </span></a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/order">Order</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/profile">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
     {{else}}
-      <li class="nav-item">
-        <a class="nav-link" href="#" id="login-modal">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/register" data-register={{register}}>Register</a>
-      </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" id="login-modal">Login</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/register" data-register={{register}}>Register</a>
+    </li>
     {{/if}}
   </ul>
 </nav>
