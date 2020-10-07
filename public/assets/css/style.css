@@ -167,7 +167,7 @@ hr {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  margin-top: 40%;
+  margin-top: 20%;
 }
 
 .drink-card:hover img {
