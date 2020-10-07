@@ -2,49 +2,36 @@
 
 <body class="background">
     <div id="main-container" class="container mr-auto p-2">
-        <div class="jumbotron text-center header-wrap">
+        <div class="jumbotron header-wrap">
             <h1 class="lead">Thank you {{userInfo.firstName}} for your order!</h1>
-            <h3>Order #: {{orderID}}</h3>
-            <br>
+            <h3 class="text-center">Order #: {{orderID}}</h3>
+            <hr class="my-4">
             <div class='order-items'>
                 {{#each order}}
-                    <div class="cart-item">
+                   <div class="cart-item">
                         <span class="cart-item-name">{{this.Drink.dataValues.name}}</span>
                         <span class="cart-item-price">${{this.dataValues.price}}</span>
                         <p class="cart-item-notes">{{this.dataValues.notesString}}</p>
                     </div>
                 {{/each}}
             </div>
-
-            <hr>
-            
-            <div class="total">
+            <hr class="my-4">
+            <div class="total text-center">
                 <p>
-                    <span class="cart-item-name">
-                        Subtotal:
-                    </span>
-                    <span class="cart-item-price" id="confirm-subtotal">
-
-                    </span>
+                    <span class="cart-item-name">Subtotal:</span>
+                    <span class="cart-item-price" id="confirm-subtotal"></span>
                 </p>
                 <p>
-                    <span class="cart-item-name">
-                        Tax:
-                    </span>
-                    <span class="cart-item-price" id="confirm-tax">
-                        
-                    </span>
+                    <span class="cart-item-name">Tax:</span>
+                    <span class="cart-item-price" id="confirm-tax"></span>
                 </p>
                 <p>
-                    <span class="cart-item-name">
-                        Total:
-                    </span>
-                    <span class="cart-item-price" id="confirm-total">
-                        
-                    </span>
+                    <span class="cart-item-name">Total:</span>
+                    <span class="cart-item-price" id="confirm-total"></span>
                 </p>
             </div>
-            <p>Your order will be ready for pick-up in 15 minutes.</p>
+            <br>
+            <p class="text-center">Your order will be ready for pick-up in 15 minutes.</p>
         </div>
     </div>
 </body>
