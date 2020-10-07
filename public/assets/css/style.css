@@ -27,10 +27,23 @@ h1 {
   color: black;
 }
 
+#err-login-msg {
+  background-color: #132226;
+  margin-left: 30%;
+  width: 40%;
+  padding: 2em;
+  border-radius: 15px;
+  align-content: center;
+}
+
 .btn {
   color:white;
   background:#525b56;
   border: 1px solid white;
+}
+
+.logout-btn:hover {
+  border-color: #525b56;
 }
 
 #user-form, .header-wrap, #create-form, .create-user-wrap {
@@ -178,7 +191,7 @@ hr {
 }
 
 .drink-card:hover img {
-  opacity: 0.5;
+  opacity: 0.35;
 }
 
 .drink-card:hover .overlay {
@@ -212,12 +225,12 @@ hr {
 }
 
 #add-user {
-  background-color: whitesmoke;
+  border-color: white;
 }
 
 #add-user:hover {
   background-color: #525b56;
-  border-color: white;
+  border-color: #525b56;
 }
 
 /* DRINK CUSTOMIZATIONS MODAL */
