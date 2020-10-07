@@ -40,7 +40,7 @@ function renderCart () {
     const itemEl = $('<div>').data('id', i).addClass('cart-item');
     const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
     const itemPriceEl = $('<span>').text('$' + order[i].price.toFixed(2)).addClass('cart-item-price');
-    const itemNotesEl = $('<p>').text(orderNotesToString(order[i].notes));
+    const itemNotesEl = $('<p>').text(order[i].notesString);
     const removeItemEl = $('<a>').data('id', i).attr('href', '#').addClass('remove-item').text('[Remove Item]');
 
     itemNotesEl.append(removeItemEl);
@@ -195,6 +195,7 @@ $('#drink-options-form').submit(function (event) {
 
   // save drinkNotes to orderItem.notes as a stringified JSON object
   orderItem.notes = drinkNotes;
+  orderItem.notesString = orderNotesToString(drinkNotes);
 
   // push orderItem into order array
   order.push(orderItem);
@@ -217,9 +218,10 @@ $('#shopping-cart-button').click(function (event) {
 // When submit-order-button is clicked, if order is empty do nothing, else save order to db
 $('#order-submit-button').click(function (event) {
   event.preventDefault();
-
+  let orderID;
   if (order.length > 0) {
     API.createOrder($(this).data('id')).then(function (data) {
+      orderID = data.id;
       for (let i = 0; i < order.length; i++) {
         order[i].OrderId = data.id;
         order[i].notes = JSON.stringify(order[i].notes);
@@ -230,6 +232,8 @@ $('#order-submit-button').click(function (event) {
         order = [];
         renderCartBadge(order.length.toString());
         localStorage.removeItem('order');
+      }).then(function (data) {
+        window.location.replace('/confirm/' + orderID);
       });
     });
   };
