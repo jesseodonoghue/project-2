@@ -56,6 +56,19 @@ module.exports = (db) => {
     }
   });
 
+  // Confirmation page
+  router.get('/confirm', (req, res) => {
+    if (req.isAuthenticated()) {
+      const user = {
+        user: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render('confirm', user);
+    } else {
+      res.render('/');
+    }
+  });
+
   // Load example index page
   router.get('/order', function (req, res) {
     if (req.isAuthenticated()) {
