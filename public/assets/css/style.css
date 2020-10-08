@@ -353,3 +353,8 @@ hr {
 .aquamarine-cart {
 	color: aquamarine;
 }
+
+/* Confirmation Page */
+.cart-item-notes {
+  font-style: italic;
+}
