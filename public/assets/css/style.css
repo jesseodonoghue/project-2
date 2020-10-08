@@ -233,6 +233,9 @@ hr {
   border-color: #525b56;
 }
 
+.add-item-to-cart {
+  color: aquamarine;
+}
 /* DRINK CUSTOMIZATIONS MODAL */
 .modal-content {
   border-color: transparent;

@@ -15,18 +15,37 @@ module.exports = (db) => {
   // Load profile page
   router.get('/profile', (req, res) => {
     if (req.isAuthenticated()) {
+      let handlebarsObj = {};
       db.User.findOne({
         where: {
           id: req.session.passport.user.id
         }
       }).then(() => {
-        const user = {
+        handlebarsObj = {
           userInfo: req.session.passport.user,
           isloggedin: req.isAuthenticated()
         };
-        // console.log(user);
-        res.render('profile', user);
+        db.Order.findAll({
+          where: { UserId: req.session.passport.user.id },
+          include: {
+            model: db.OrderItem,
+            include: db.Drink
+          }
+        }).then(function (dbOrders) {
+          for (let i = 0; i < dbOrders.length; i++) {
+            console.log('order Obj!----', dbOrders[i]);
+          }
+          handlebarsObj.orderData = dbOrders;
+          res.render('profile', handlebarsObj);
+        });
       });
+      // }).then(() => {
+      //   const user = {
+      //     userInfo: req.session.passport.user,
+      //     isloggedin: req.isAuthenticated()
+      //   };
+      // console.log(user);
+      // });
     } else {
       res.redirect('/');
     }
