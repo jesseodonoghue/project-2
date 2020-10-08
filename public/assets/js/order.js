@@ -41,6 +41,7 @@ function renderCart () {
   let subtotal = 0;
   let tax;
   for (let i = 0; i < order.length; i++) {
+    console.log('order[i]------\n', order[i]);
     subtotal += order[i].price;
     const itemEl = $('<div>').data('id', i).addClass('cart-item');
     const itemNameEl = $('<span>').text(order[i].name).addClass('cart-item-name');
@@ -256,6 +257,23 @@ $('#order-submit-button').click(function (event) {
       });
     });
   };
+});
+
+$('.add-item-to-cart').click(function (event) {
+  console.log('notes!-----\n', $(this).data('notes'));
+  const newItem = {
+    id: $(this).data('drink-id'),
+    name: $(this).data('drink-name'),
+    price: parseFloat($(this).data('drink-price')),
+    notes: $(this).data('notes'),
+    notesString: orderNotesToString($(this).data('notes'))
+  };
+
+  order.push(newItem);
+  localStorage.setItem('order', JSON.stringify(order));
+  renderCart();
+  renderCartBadge(order.length.toString());
+  $('#shopping-cart').modal('show');
 });
 
 function orderNotesToString (orderNotesObj) {

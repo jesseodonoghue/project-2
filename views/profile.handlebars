@@ -83,7 +83,23 @@
       <div class="userId">
         <h3>{{userInfo.firstName}}'s Order History</h3>
         <hr class="my-4">
-        <div class="history"></div>
+        <div class="history">
+          {{#each orderData}}
+            <div class="order-div">
+              <h5>Order #: {{this.dataValues.id}}</h5>
+              <br>
+              {{#each this.dataValues.OrderItems}}
+                <div class="cart-item">
+                  <span class="cart-item-name">{{this.Drink.dataValues.name}}</span>
+                  <span class="cart-item-price">${{this.dataValues.price}}</span>
+                  <a href="#" class="add-item-to-cart" data-notes="{{this.dataValues.notes}}" data-drink-id="{{this.Drink.dataValues.id}}" data-drink-name="{{this.Drink.dataValues.name}}" data-drink-price="{{this.Drink.dataValues.basePrice}}"> [Add to Cart]</a>
+                  <p class="cart-item-notes">{{this.dataValues.notesString}}</p>
+                </div>
+              {{/each}}
+            </div>
+            <hr class="my-4">
+          {{/each}}
+        </div>
       </div>
     </header>
   </div>
