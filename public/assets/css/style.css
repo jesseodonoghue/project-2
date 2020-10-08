@@ -88,6 +88,18 @@ h1 {
   font-weight: 500;
 }
 
+.lead2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.lead3 {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
 .userId h2, .header-wrap h1 {
   text-transform: capitalize;
 }
