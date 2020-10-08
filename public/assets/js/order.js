@@ -262,7 +262,6 @@ $('#order-submit-button').click(function (event) {
 $('.add-item-to-cart').click(function (event) {
   console.log('notes!-----\n', $(this).data('notes'));
   const newItem = {
-    id: $(this).data('drink-id'),
     name: $(this).data('drink-name'),
     price: parseFloat($(this).data('drink-price')),
     notes: $(this).data('notes'),
