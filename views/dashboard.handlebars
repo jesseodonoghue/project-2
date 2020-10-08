@@ -1,39 +1,52 @@
 {{> nav/nav-block}}
+
 <body class="background">
   <div id="main-container" class="container mr-auto p-2">
     <div class="jumbotron text-center align-content-center header-wrap">
-      <h1 class="lead">Welcome to <strong>CoffeeHut</strong></h1>
+      <h1 class="lead">Welcome to <strong>CoffeeHut!</strong></h1>
       <hr class="my-4">
       <div>
-        <p>CoffeeHut is a web based application through which a user can order craft coffee drinks from their local
-          coffee shop, CoffeeHut. Upon navigating to the application the user will be prompted to log in or create an
-          account. Once the user logs in they can create a new order or view any previous orders they’ve placed. When
-          creating a new order, the user can select a drink from the menu (with desired modifications), from their order
-          history, or from a list of the most popular drinks.</p>
+        <h2 class="lead2">About Us</strong></h2>
+        <p>
+          CoffeeHut is a locally owned, locally sourced Coffee Shop that provides high quality products from neighbors,
+          for neighbors. We offer a rustic hut outdoor appearance with a comforting, stylish, and modern internal
+          environment.
+        </p>
+        <h2 class="lead2">Our Motivation</strong></h2>
+        <p>
+          Founders Jesse O'Donoghue, Masiel Bautista, Graham Dickey, and Jacob Beeson came together and created
+          CoffeeHut in 2020 with a unique vision, unlike any other Coffee Shop you have experienced. Rather than being
+          driven by economic greed or artistic coffee pursuits, CoffeeHut was founded specifically to drive the owners'
+          desire to increase their coding language knowledge. Founders Jesse and Graham were in the pursuit of
+          understanding the backend information required to build the databases and retrival methods that a coffee shop
+          may require, while founders Masiel and Jacob sought to exercise their creative minds and provide a positive
+          user experience for their customers.
+        </p>
+
         <p class="bhours">
-          <h4>Coffee Shop Hours:</h4>
-          <p>
-            Monday: 8am-5pm <br>
-            Tuesday: 8am-5pm<br>
-            Wednesday: 8am-5pm<br>
-            Thursday: 8am-5pm<br>
-            Friday: 8am-5pm<br>
-            Saturday: 9am-3pm<br>
-            Sunday: 10am-2pm
-          </p>
+        <h4 class="lead3">Coffee Shop Hours:</h4>
+        <p>
+          Monday: 8am-5pm <br>
+          Tuesday: 8am-5pm<br>
+          Wednesday: 8am-5pm<br>
+          Thursday: 8am-5pm<br>
+          Friday: 8am-5pm<br>
+          Saturday: 9am-3pm<br>
+          Sunday: 10am-2pm
+        </p>
         </p>
 
       </div>
 
-        <div id="err-login-msg">
+      <div id="err-login-msg">
         {{#if isloggedin}}
-          You are logged in as {{user.firstName}} <br><br>
-          <a href="/logout"> <button type="btn" class="btn logout-btn">Logout</button></a>
+        You are logged in as {{user.firstName}} <br><br>
+        <a href="/logout"> <button type="btn" class="btn logout-btn">Logout</button></a>
         {{else}}
-          <p>You need to log in to use this app.</p>
+        <p>You need to log in to use this app.</p>
         {{/if}}
         <h5 id="login-err-msg"></h5>
-        </div>
+      </div>
 
     </div>
   </div>
